@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
-import { saveImage } from "../repository/saveImage";
+import { saveOgp } from "../repository/saveOgp";
 
 const layer = new Konva.Layer();
 
@@ -27,13 +27,11 @@ const TopPage = () => {
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
 
-  const submit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log("submit");
+  const submit = async () => {
     const uuid = generateUUID();
-    console.log("uuid: " + uuid);
     //@ts-ignore
     const dataURL = stageRef.current.toDataURL();
-    saveImage(dataURL, uuid);
+    saveOgp(dataURL, uuid);
 
     router.push(`/${uuid}`);
   };
@@ -73,7 +71,7 @@ const TopPage = () => {
           ))}
         </ul>
       </div>
-      <button onClick={(e) => submit(e)}>生成する</button>
+      <button onClick={submit}>生成する</button>
 
       <Stage width={600} height={315} ref={stageRef} className="hoe">
         <Layer>

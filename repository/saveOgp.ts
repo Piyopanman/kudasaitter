@@ -1,11 +1,11 @@
 import firebase from "firebase";
 
-export const saveImage = (dataURL: string, uuid: string) => {
+export const saveOgp = (dataURL: string, uuid: string) => {
   const strageRef = firebase.storage().ref();
   const ogpRef = strageRef.child(`${uuid}`);
   ogpRef
     .putString(dataURL, "data_url")
-    .then((snapshot) => {
+    .then(() => {
       console.log("uploaded a data_url string");
     })
     .catch((e) => {
