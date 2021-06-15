@@ -8,6 +8,8 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "canvas": "^2.8.0",
+    "firebase": "^8.6.7",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
