@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
+import { saveImage } from "../repository/saveImage";
 
 const layer = new Konva.Layer();
 
@@ -32,7 +33,8 @@ const TopPage = () => {
     console.log("uuid: " + uuid);
     //@ts-ignore
     const dataURL = stageRef.current.toDataURL();
-    e.preventDefault();
+    saveImage(dataURL, uuid);
+
     router.push(`/${uuid}`);
   };
 
