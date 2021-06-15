@@ -1,4 +1,3 @@
-import firebase from "firebase/app";
 import "firebase/storage";
 import { FirebaseConfigType } from "./types/firebaseConfig";
 
