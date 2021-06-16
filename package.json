@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "now-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && npm run build"
+    "now-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid,libpng}.so.1 node_modules/canvas/build/Release/ && npm run build"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.3",
