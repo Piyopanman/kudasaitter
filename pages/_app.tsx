@@ -8,8 +8,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     firebase.initializeApp(firebaseConfig);
   }, []);
-  // firebase.initializeApp(firebaseConfig);
-  // const strage = firebase.storage();
 
   return <Component {...pageProps} />;
 }

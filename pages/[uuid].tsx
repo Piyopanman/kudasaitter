@@ -11,7 +11,7 @@ type Props = {
 
 const Result: NextPage<Props> = (props) => {
   const { uuid } = props;
-  const [ogp, setOgp] = useState("/ogp01.png");
+  const [ogp, setOgp] = useState("/muji.png");
 
   useEffect(() => {
     const getUrl = async () => {

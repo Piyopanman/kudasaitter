@@ -5,11 +5,16 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "now-build": "cp canvas_lib64/*so.1 node_modules/canvas/build/Release/ && yarn build"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.6.3",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "canvas": "^2.8.0",
     "firebase": "^8.6.7",
+    "framer-motion": "^4.1.17",
     "konva": "^8.0.4",
     "next": "latest",
     "next-transpile-modules": "^7.3.0",
