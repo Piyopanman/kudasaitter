@@ -8,6 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "canvas": "^2.8.0",
     "firebase": "^8.6.7",
     "konva": "^8.0.4",
     "next": "latest",

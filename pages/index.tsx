@@ -27,12 +27,14 @@ const TopPage = () => {
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
 
-  const submit = async () => {
+  const submit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log("1. submit button is pushed");
     const uuid = generateUUID();
     //@ts-ignore
-    const dataURL = stageRef.current.toDataURL();
-    saveOgp(dataURL, uuid);
-
+    const dataURL = await stageRef.current.toDataURL();
+    await saveOgp(dataURL, uuid);
+    console.log("3. " + uuid);
+    e.preventDefault();
     router.push(`/${uuid}`);
   };
 
@@ -71,7 +73,7 @@ const TopPage = () => {
           ))}
         </ul>
       </div>
-      <button onClick={submit}>生成する</button>
+      <button onClick={(e) => submit(e)}>生成する</button>
 
       <Stage width={600} height={315} ref={stageRef} className="hoe">
         <Layer>

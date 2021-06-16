@@ -1,12 +1,12 @@
 import firebase from "firebase";
 
-export const getOgpUrl = (uuid: string): Promise<string | void> => {
+export const getOgpUrl = async (uuid: string) => {
   const strage = firebase.storage();
   const pathReference = strage.ref(uuid);
   return pathReference
     .getDownloadURL()
-    .then((url: string) => {
-      console.log("get ogp url");
+    .then(async (url: string) => {
+      console.log("4. Downloaded");
       return url;
     })
     .catch((e) => {
