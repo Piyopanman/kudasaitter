@@ -36,7 +36,7 @@ const TopPage = () => {
   const submit = async () => {
     const uuid = generateUUID();
     //@ts-ignore
-    const dataURL = await stageRef.current.toDataURL();
+    const dataURL = await stageRef.current.toDataURL({ pixelRatio: 2 });
     await saveOgp(dataURL, uuid);
     router.push(`/${uuid}`);
   };
