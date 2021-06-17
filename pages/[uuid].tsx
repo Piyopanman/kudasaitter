@@ -2,6 +2,7 @@ import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { TwitterShareButton, TwitterIcon } from "react-share";
 import { getOgpUrl } from "../repository/getOgpUrl";
 import Layout from "../components/Layout";
 
@@ -25,7 +26,15 @@ const Result: NextPage<Props> = (props) => {
     <Layout image={ogp}>
       <h1>画像を生成しました！！！</h1>
       <Image src={ogp} width={600} height={315} />
-      <Link href="/">トップへ</Link>
+      <TwitterShareButton
+        title="くださいったー"
+        hashtags={["くださいったー"]}
+        related={["hiyoko_coder"]}
+        url="https://kudasaitter.vercel.app/"
+      >
+        <TwitterIcon />
+      </TwitterShareButton>
+      <Link href="/">もう一度画像を作る！</Link>
     </Layout>
   );
 };
