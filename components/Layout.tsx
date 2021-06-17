@@ -13,7 +13,7 @@ const Layout = ({
   children,
   title = "くださいったー",
   description = "欲しいものを画像で生成してフォロワーにシェアしよう！",
-  image = "まだ",
+  image = "https://kudasaitter.vercel.app/default.png",
 }: Props) => (
   <div>
     <Head>
@@ -24,6 +24,7 @@ const Layout = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@hiyoko_coder" />
       <meta name="twitter:creator" content="@hiyoko_coder" />
+      <meta name="twitter:image" content={image} />
       <meta property="og:url" content="https://kudasaitter.vercel.app/" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
