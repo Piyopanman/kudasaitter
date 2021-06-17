@@ -9,6 +9,9 @@ import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
 import { saveOgp } from "../repository/saveOgp";
 import { Box } from "@chakra-ui/react";
+import { getOgpUrl } from "../repository/getOgpUrl";
+import { useSetRecoilState } from "recoil";
+import { ogpUrlState } from "../recoil/atoms/ogpUrl";
 
 const layer = new Konva.Layer();
 
@@ -29,6 +32,7 @@ const TopPage = () => {
 
   const [moji, setMoji] = useState<string>("文字を入力してください");
   const [fontSize, setFontSize] = useState<number>(30);
+  const setOgpUrl = useSetRecoilState(ogpUrlState);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
@@ -38,6 +42,8 @@ const TopPage = () => {
     //@ts-ignore
     const dataURL = await stageRef.current.toDataURL({ pixelRatio: 2 });
     await saveOgp(dataURL, uuid);
+    const url = (await getOgpUrl(uuid)) as string;
+    setOgpUrl(url);
     router.push(`/${uuid}`);
   };
 
