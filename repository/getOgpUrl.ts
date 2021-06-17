@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/storage";
 
 export const getOgpUrl = async (uuid: string) => {
   const strage = firebase.storage();
@@ -6,7 +7,6 @@ export const getOgpUrl = async (uuid: string) => {
   return pathReference
     .getDownloadURL()
     .then(async (url: string) => {
-      console.log("4. Downloaded");
       return url;
     })
     .catch((e) => {

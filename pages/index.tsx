@@ -34,12 +34,10 @@ const TopPage = () => {
   const stageRef = useRef(null);
 
   const submit = async () => {
-    console.log("1. submit button is pushed");
     const uuid = generateUUID();
     //@ts-ignore
-    const dataURL = await stageRef.current.toDataURL();
+    const dataURL = await stageRef.current.toDataURL({ pixelRatio: 2 });
     await saveOgp(dataURL, uuid);
-    console.log("3. " + uuid);
     router.push(`/${uuid}`);
   };
 
@@ -55,7 +53,7 @@ const TopPage = () => {
   return (
     <Layout>
       <Box>
-        <h1>OGP生成サンプルページ</h1>
+        <h1>画像生成</h1>
         <form>
           <textarea value={moji} onChange={(e) => setMoji(e.target.value)} />
           <select onChange={(e) => setFontSize(Number(e.target.value))}>

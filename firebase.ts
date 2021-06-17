@@ -1,4 +1,3 @@
-import "firebase/storage";
 import { FirebaseConfigType } from "./types/firebaseConfig";
 
 export const firebaseConfig: FirebaseConfigType = {
