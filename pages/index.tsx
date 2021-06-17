@@ -9,6 +9,7 @@ import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
 import { saveOgp } from "../repository/saveOgp";
 import { Box } from "@chakra-ui/react";
+import { getOgpUrl } from "../repository/getOgpUrl";
 
 const layer = new Konva.Layer();
 
@@ -29,6 +30,9 @@ const TopPage = () => {
 
   const [moji, setMoji] = useState<string>("文字を入力してください");
   const [fontSize, setFontSize] = useState<number>(30);
+  const [ogpUrl, setOgpUrl] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/kudasaitter.appspot.com/o/aomcldat?alt=media&token=c07656cc-0608-4194-8996-45af7e60c658"
+  );
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
@@ -38,7 +42,9 @@ const TopPage = () => {
     //@ts-ignore
     const dataURL = await stageRef.current.toDataURL({ pixelRatio: 2 });
     await saveOgp(dataURL, uuid);
-    router.push(`/${uuid}`);
+    const ogp = (await getOgpUrl(uuid)) as string;
+    setOgpUrl(ogp);
+    router.push({ pathname: "/" }, { query: { uuid: uuid } });
   };
 
   const changeImage = (imageUrl: string) => {
@@ -51,7 +57,7 @@ const TopPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout image={ogpUrl}>
       <Box>
         <h1>画像生成</h1>
         <form>
