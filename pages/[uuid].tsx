@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,6 +6,7 @@ import { useEffect, useState } from "react";
 import { TwitterShareButton, TwitterIcon } from "react-share";
 import { getOgpUrl } from "../repository/getOgpUrl";
 import Layout from "../components/Layout";
+import { firebaseConfig } from "../firebase";
 
 type Props = {
   uuid: string;
@@ -16,6 +18,9 @@ const Result: NextPage<Props> = (props) => {
 
   useEffect(() => {
     const getUrl = async () => {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
       const path = (await getOgpUrl(uuid)) as string;
       setOgp(path);
     };
@@ -30,7 +35,7 @@ const Result: NextPage<Props> = (props) => {
         title="くださいったー"
         hashtags={["くださいったー"]}
         related={["hiyoko_coder"]}
-        url="https://kudasaitter.vercel.app/"
+        url={`https://kudasaitter.vercel.app/${uuid}`}
       >
         <TwitterIcon />
       </TwitterShareButton>
