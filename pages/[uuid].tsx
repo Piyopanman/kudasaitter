@@ -24,10 +24,10 @@ const Result: NextPage<Props> = (props) => {
   }, []);
 
   return (
-    <Layout image={`${process.env.NEXT_OGP_BASE_URL}/${uuid}`}>
+    <Layout image={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}>
       <h1>画像を生成しました！！！</h1>
       <Image
-        src={`${process.env.NEXT_OGP_BASE_URL}/${uuid}`}
+        src={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}
         width={600}
         height={315}
       />
