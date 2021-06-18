@@ -9,8 +9,3 @@ export const firebaseConfig: FirebaseConfigType = {
   messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID as string,
   appId: process.env.NEXT_PUBLIC_APP_ID as string,
 };
-
-export const getOgpBaseUrl = () => {
-  const ogpBaseUrl = process.env.NEXT_PUBLIC_OGP_BASE_URL as string;
-  return ogpBaseUrl;
-};
