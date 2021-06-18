@@ -2,9 +2,8 @@ import firebase from "firebase/app";
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { TwitterShareButton, TwitterIcon } from "react-share";
-import { getOgpUrl } from "../repository/getOgpUrl";
 import Layout from "../components/Layout";
 import { firebaseConfig } from "../firebase";
 
@@ -14,23 +13,24 @@ type Props = {
 
 const Result: NextPage<Props> = (props) => {
   const { uuid } = props;
-  const [ogp, setOgp] = useState("/muji.png");
 
   useEffect(() => {
     const getUrl = async () => {
       if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
       }
-      const path = (await getOgpUrl(uuid)) as string;
-      setOgp(path);
     };
     getUrl();
   }, []);
 
   return (
-    <Layout image={ogp}>
+    <Layout image={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}>
       <h1>画像を生成しました！！！</h1>
-      <Image src={ogp} width={600} height={315} />
+      <Image
+        src={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}
+        width={600}
+        height={315}
+      />
       <TwitterShareButton
         title="くださいったー"
         hashtags={["くださいったー"]}
