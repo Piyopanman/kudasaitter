@@ -8,7 +8,14 @@ import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
 import { saveOgp } from "../repository/saveOgp";
-import { Box } from "@chakra-ui/react";
+import {
+  Box,
+  Textarea,
+  FormControl,
+  FormLabel,
+  Button,
+} from "@chakra-ui/react";
+import { Text as T, Center } from "@chakra-ui/layout";
 
 const layer = new Konva.Layer();
 
@@ -20,14 +27,9 @@ const TopPage = () => {
   }
   const router = useRouter();
   const fontSizeArray = Array.from(Array(20), (_, i) => i * 5 + 30);
-  const imageArray = [
-    "hukidashi.png",
-    "kouhaku.png",
-    "shuchusen.png",
-    "muji.png",
-  ];
+  const imageArray = ["hukidashi.png", "kouhaku.png", "shuchusen.png"];
 
-  const [moji, setMoji] = useState<string>("文字を入力してください");
+  const [moji, setMoji] = useState<string>("可愛い推しカプください！");
   const [fontSize, setFontSize] = useState<number>(30);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
@@ -52,10 +54,21 @@ const TopPage = () => {
 
   return (
     <Layout>
-      <Box>
-        <h1>画像生成</h1>
-        <form>
-          <textarea value={moji} onChange={(e) => setMoji(e.target.value)} />
+      <Box m={5}>
+        <FormControl textAlign="center">
+          <FormLabel textAlign="center" mt={10}>
+            文字を入力してください
+          </FormLabel>
+          <Textarea
+            placeholder="(例)可愛い推しカプください！"
+            width="70%"
+            value={moji}
+            onChange={(e) => setMoji(e.target.value)}
+            isRequired
+          />
+          <FormLabel textAlign="center" mt={10}>
+            文字のサイズを選んでください
+          </FormLabel>
           <select onChange={(e) => setFontSize(Number(e.target.value))}>
             {fontSizeArray.map((size) => (
               <option value={size} key={size}>
@@ -63,7 +76,8 @@ const TopPage = () => {
               </option>
             ))}
           </select>
-        </form>
+          <Button onClick={submit}>生成する</Button>
+        </FormControl>
         <div>
           <ul>
             {imageArray.map((image, index) => (
@@ -77,7 +91,6 @@ const TopPage = () => {
             ))}
           </ul>
         </div>
-        <button onClick={submit}>生成する</button>
 
         <Stage width={600} height={315} ref={stageRef} className="hoe">
           <Layer>
