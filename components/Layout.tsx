@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import Head from "next/head";
 import Header from "./Header";
+import Footer from "./Footer";
+import { Box } from "@chakra-ui/react";
 
 type Props = {
   children?: ReactNode;
@@ -15,7 +17,7 @@ const Layout = ({
   description = "欲しいものを画像で生成してフォロワーにシェアしよう！",
   image = "https://kudasaitter.vercel.app/default.png",
 }: Props) => (
-  <div>
+  <Box h="100%" minH="100vh" position="relative" paddingBottom="6em">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -34,7 +36,8 @@ const Layout = ({
     </Head>
     <Header />
     {children}
-  </div>
+    <Footer />
+  </Box>
 );
 
 export default Layout;

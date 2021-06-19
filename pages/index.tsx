@@ -8,7 +8,19 @@ import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
 import { saveOgp } from "../repository/saveOgp";
-import { Box } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Textarea,
+  Button,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Grid,
+  GridItem,
+  Text as T,
+} from "@chakra-ui/react";
 
 const layer = new Konva.Layer();
 
@@ -19,16 +31,10 @@ const TopPage = () => {
     initialImageState.src = "shuchusen.png";
   }
   const router = useRouter();
-  const fontSizeArray = Array.from(Array(20), (_, i) => i * 5 + 30);
-  const imageArray = [
-    "hukidashi.png",
-    "kouhaku.png",
-    "shuchusen.png",
-    "muji.png",
-  ];
+  const imageArray = ["hukidashi.png", "kouhaku.png", "shuchusen.png"];
 
-  const [moji, setMoji] = useState<string>("文字を入力してください");
-  const [fontSize, setFontSize] = useState<number>(30);
+  let [text, setText] = useState<string>("5000兆円欲しい！！！");
+  const [fontSize, setFontSize] = useState<number>(40);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
@@ -50,53 +56,97 @@ const TopPage = () => {
     }
   };
 
+  let changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    let inputValue = e.target.value;
+    setText(inputValue);
+  };
+
   return (
     <Layout>
-      <Box>
-        <h1>画像生成</h1>
-        <form>
-          <textarea value={moji} onChange={(e) => setMoji(e.target.value)} />
-          <select onChange={(e) => setFontSize(Number(e.target.value))}>
-            {fontSizeArray.map((size) => (
-              <option value={size} key={size}>
-                {size}
-              </option>
-            ))}
-          </select>
-        </form>
-        <div>
-          <ul>
-            {imageArray.map((image, index) => (
-              <Image
-                src={`/${image}`}
-                width={300}
-                height={155}
-                onClick={() => changeImage(image)}
-                key={index}
-              />
-            ))}
-          </ul>
-        </div>
-        <button onClick={submit}>生成する</button>
-
-        <Stage width={600} height={315} ref={stageRef} className="hoe">
-          <Layer>
-            <Img image={image} />
-            <Text
-              text={moji}
-              fontSize={fontSize}
-              fontStyle="bold"
-              align="center"
-              verticalAlign="middle"
-              x={50}
-              y={15}
-              strokeWidth={100}
-              wrap="char"
-              height={300}
-              width={500}
+      <Box m={5}>
+        <Box textAlign="center">
+          <Box>
+            <T textAlign="center" fontSize="xl" mt={10}>
+              文字を入力してください
+            </T>
+            <Textarea
+              placeholder="(例)5000兆円欲しい！！！"
+              width="70%"
+              value={text}
+              onChange={(e) => changeText(e)}
             />
-          </Layer>
-        </Stage>
+          </Box>
+          <Box>
+            <T textAlign="center" fontSize="xl" mt={10}>
+              背景画像を選んでください
+            </T>
+            <Grid templateColumns="repeat(3, 1fr)" gap={2}>
+              {imageArray.map((image, index) => (
+                <GridItem
+                  cursor="pointer"
+                  p={1}
+                  _hover={{
+                    bgColor: "blue.50",
+                  }}
+                >
+                  <Image
+                    src={`/${image}`}
+                    width={300}
+                    height={155}
+                    onClick={() => changeImage(image)}
+                    key={index}
+                  />
+                </GridItem>
+              ))}
+            </Grid>
+          </Box>
+
+          <Box>
+            <T textAlign="center" fontSize="xl" mt={10}>
+              文字のサイズを選んでください
+            </T>
+            <Slider
+              aria-label="slider-1"
+              width="70%"
+              size="md"
+              onChangeEnd={(val) => setFontSize(val)}
+              defaultValue={40}
+              min={5}
+              max={200}
+              focusThumbOnChange={false}
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+          </Box>
+        </Box>
+        <Center mt={10}>
+          <Stage width={600} height={315} ref={stageRef}>
+            <Layer>
+              <Img image={image} />
+              <Text
+                text={text}
+                fontSize={fontSize}
+                fontStyle="bold"
+                align="center"
+                verticalAlign="middle"
+                x={50}
+                y={15}
+                strokeWidth={100}
+                wrap="char"
+                height={300}
+                width={500}
+              />
+            </Layer>
+          </Stage>
+        </Center>
+        <Center>
+          <Button my={10} onClick={submit} size="lg">
+            生成する！！
+          </Button>
+        </Center>
       </Box>
     </Layout>
   );

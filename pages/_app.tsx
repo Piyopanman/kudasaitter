@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import "firebase/storage";
 import { useEffect } from "react";
 import { firebaseConfig } from "../firebase";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   //firebase設定初期化
@@ -12,7 +13,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <ChakraProvider>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  );
 }
 
 export default MyApp;
