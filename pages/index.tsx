@@ -12,8 +12,6 @@ import {
   Box,
   Center,
   Textarea,
-  FormControl,
-  FormLabel,
   Button,
   Slider,
   SliderTrack,
