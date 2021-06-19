@@ -21,6 +21,7 @@ import {
   SliderThumb,
   Grid,
   GridItem,
+  Text as T,
 } from "@chakra-ui/react";
 
 const layer = new Konva.Layer();
@@ -34,7 +35,7 @@ const TopPage = () => {
   const router = useRouter();
   const imageArray = ["hukidashi.png", "kouhaku.png", "shuchusen.png"];
 
-  const [moji, setMoji] = useState<string>("5000兆円欲しい！！！");
+  let [text, setText] = useState<string>("5000兆円欲しい！！！");
   const [fontSize, setFontSize] = useState<number>(40);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
@@ -57,26 +58,30 @@ const TopPage = () => {
     }
   };
 
+  let changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    let inputValue = e.target.value;
+    setText(inputValue);
+  };
+
   return (
     <Layout>
       <Box m={5}>
-        <FormControl textAlign="center">
+        <Box textAlign="center">
           <Box>
-            <FormLabel textAlign="center" mt={10}>
+            <T textAlign="center" fontSize="xl" mt={10}>
               文字を入力してください
-            </FormLabel>
+            </T>
             <Textarea
               placeholder="(例)5000兆円欲しい！！！"
               width="70%"
-              value={moji}
-              onChange={(e) => setMoji(e.target.value)}
-              isRequired
+              value={text}
+              onChange={(e) => changeText(e)}
             />
           </Box>
           <Box>
-            <FormLabel textAlign="center" mt={10}>
+            <T textAlign="center" fontSize="xl" mt={10}>
               背景画像を選んでください
-            </FormLabel>
+            </T>
             <Grid templateColumns="repeat(3, 1fr)" gap={2}>
               {imageArray.map((image, index) => (
                 <GridItem
@@ -99,16 +104,18 @@ const TopPage = () => {
           </Box>
 
           <Box>
-            <FormLabel textAlign="center" mt={10}>
+            <T textAlign="center" fontSize="xl" mt={10}>
               文字のサイズを選んでください
-            </FormLabel>
+            </T>
             <Slider
+              aria-label="slider-1"
               width="70%"
               size="md"
               onChangeEnd={(val) => setFontSize(val)}
               defaultValue={40}
               min={5}
               max={200}
+              focusThumbOnChange={false}
             >
               <SliderTrack>
                 <SliderFilledTrack />
@@ -116,13 +123,13 @@ const TopPage = () => {
               <SliderThumb />
             </Slider>
           </Box>
-        </FormControl>
+        </Box>
         <Center mt={10}>
-          <Stage width={600} height={315} ref={stageRef} className="hoe">
+          <Stage width={600} height={315} ref={stageRef}>
             <Layer>
               <Img image={image} />
               <Text
-                text={moji}
+                text={text}
                 fontSize={fontSize}
                 fontStyle="bold"
                 align="center"
