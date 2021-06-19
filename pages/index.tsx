@@ -10,12 +10,18 @@ import { generateUUID } from "../utils/generateUUID";
 import { saveOgp } from "../repository/saveOgp";
 import {
   Box,
+  Center,
   Textarea,
   FormControl,
   FormLabel,
   Button,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
-import { Text as T, Center } from "@chakra-ui/layout";
 
 const layer = new Konva.Layer();
 
@@ -26,11 +32,10 @@ const TopPage = () => {
     initialImageState.src = "shuchusen.png";
   }
   const router = useRouter();
-  const fontSizeArray = Array.from(Array(20), (_, i) => i * 5 + 30);
   const imageArray = ["hukidashi.png", "kouhaku.png", "shuchusen.png"];
 
-  const [moji, setMoji] = useState<string>("可愛い推しカプください！");
-  const [fontSize, setFontSize] = useState<number>(30);
+  const [moji, setMoji] = useState<string>("5000兆円欲しい！！！");
+  const [fontSize, setFontSize] = useState<number>(40);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
@@ -56,60 +61,80 @@ const TopPage = () => {
     <Layout>
       <Box m={5}>
         <FormControl textAlign="center">
-          <FormLabel textAlign="center" mt={10}>
-            文字を入力してください
-          </FormLabel>
-          <Textarea
-            placeholder="(例)可愛い推しカプください！"
-            width="70%"
-            value={moji}
-            onChange={(e) => setMoji(e.target.value)}
-            isRequired
-          />
-          <FormLabel textAlign="center" mt={10}>
-            文字のサイズを選んでください
-          </FormLabel>
-          <select onChange={(e) => setFontSize(Number(e.target.value))}>
-            {fontSizeArray.map((size) => (
-              <option value={size} key={size}>
-                {size}
-              </option>
-            ))}
-          </select>
-          <Button onClick={submit}>生成する</Button>
-        </FormControl>
-        <div>
-          <ul>
-            {imageArray.map((image, index) => (
-              <Image
-                src={`/${image}`}
-                width={300}
-                height={155}
-                onClick={() => changeImage(image)}
-                key={index}
-              />
-            ))}
-          </ul>
-        </div>
-
-        <Stage width={600} height={315} ref={stageRef} className="hoe">
-          <Layer>
-            <Img image={image} />
-            <Text
-              text={moji}
-              fontSize={fontSize}
-              fontStyle="bold"
-              align="center"
-              verticalAlign="middle"
-              x={50}
-              y={15}
-              strokeWidth={100}
-              wrap="char"
-              height={300}
-              width={500}
+          <Box>
+            <FormLabel textAlign="center" mt={10}>
+              文字を入力してください
+            </FormLabel>
+            <Textarea
+              placeholder="(例)5000兆円欲しい！！！"
+              width="70%"
+              value={moji}
+              onChange={(e) => setMoji(e.target.value)}
+              isRequired
             />
-          </Layer>
-        </Stage>
+          </Box>
+          <Box>
+            <FormLabel textAlign="center" mt={10}>
+              背景画像を選んでください
+            </FormLabel>
+            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+              {imageArray.map((image, index) => (
+                <GridItem>
+                  <Image
+                    src={`/${image}`}
+                    width={300}
+                    height={155}
+                    onClick={() => changeImage(image)}
+                    key={index}
+                  />
+                </GridItem>
+              ))}
+            </Grid>
+          </Box>
+
+          <Box>
+            <FormLabel textAlign="center" mt={10}>
+              文字のサイズを選んでください
+            </FormLabel>
+            <Slider
+              width="70%"
+              size="md"
+              onChangeEnd={(val) => setFontSize(val)}
+              defaultValue={40}
+              min={5}
+              max={150}
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+          </Box>
+
+          <Button my={10} onClick={submit}>
+            生成する
+          </Button>
+        </FormControl>
+        <Center>
+          <Stage width={600} height={315} ref={stageRef} className="hoe">
+            <Layer>
+              <Img image={image} />
+              <Text
+                text={moji}
+                fontSize={fontSize}
+                fontStyle="bold"
+                align="center"
+                verticalAlign="middle"
+                x={50}
+                y={15}
+                strokeWidth={100}
+                wrap="char"
+                height={300}
+                width={500}
+              />
+            </Layer>
+          </Stage>
+        </Center>
       </Box>
     </Layout>
   );

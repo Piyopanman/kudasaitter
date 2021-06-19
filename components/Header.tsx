@@ -3,7 +3,7 @@ import { Center, Heading } from "@chakra-ui/layout";
 
 const Header: NextPage = () => {
   return (
-    <Center backgroundColor="blue.50">
+    <Center backgroundColor="blue.50" p={8}>
       <Heading s="h2" size="2xl">
         くださいったー
       </Heading>
