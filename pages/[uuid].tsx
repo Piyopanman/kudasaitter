@@ -3,9 +3,10 @@ import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
-import { TwitterShareButton, TwitterIcon } from "react-share";
+import { TwitterShareButton } from "react-share";
 import Layout from "../components/Layout";
 import { firebaseConfig } from "../firebase";
+import { Box, Text, Button } from "@chakra-ui/react";
 
 type Props = {
   uuid: string;
@@ -25,21 +26,29 @@ const Result: NextPage<Props> = (props) => {
 
   return (
     <Layout image={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}>
-      <h1>画像を生成しました！！！</h1>
-      <Image
-        src={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}
-        width={600}
-        height={315}
-      />
-      <TwitterShareButton
-        title="くださいったー"
-        hashtags={["くださいったー"]}
-        related={["hiyoko_coder"]}
-        url={`https://kudasaitter.vercel.app/${uuid}`}
-      >
-        <TwitterIcon />
-      </TwitterShareButton>
-      <Link href="/">もう一度画像を作る！</Link>
+      <Box m={5} textAlign="center">
+        <Text fontSize="3xl">画像を生成しました🎉</Text>
+        <Box>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}
+            width={600}
+            height={315}
+          />
+        </Box>
+        <Button color="white" bgColor="#05ACED" mr={2}>
+          <TwitterShareButton
+            title="くださいったー"
+            hashtags={["くださいったー"]}
+            related={["hiyoko_coder"]}
+            url={`https://kudasaitter.vercel.app/${uuid}`}
+          >
+            Twitterでシェアする！
+          </TwitterShareButton>
+        </Button>
+        <Button>
+          <Link href="/">もう一度画像を作る！</Link>
+        </Button>
+      </Box>
     </Layout>
   );
 };

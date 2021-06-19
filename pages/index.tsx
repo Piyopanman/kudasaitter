@@ -116,12 +116,8 @@ const TopPage = () => {
               <SliderThumb />
             </Slider>
           </Box>
-
-          <Button my={10} onClick={submit}>
-            生成する
-          </Button>
         </FormControl>
-        <Center>
+        <Center mt={10}>
           <Stage width={600} height={315} ref={stageRef} className="hoe">
             <Layer>
               <Img image={image} />
@@ -140,6 +136,11 @@ const TopPage = () => {
               />
             </Layer>
           </Stage>
+        </Center>
+        <Center>
+          <Button my={10} onClick={submit} size="lg">
+            生成する！！
+          </Button>
         </Center>
       </Box>
     </Layout>
