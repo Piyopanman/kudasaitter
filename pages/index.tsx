@@ -77,9 +77,15 @@ const TopPage = () => {
             <FormLabel textAlign="center" mt={10}>
               背景画像を選んでください
             </FormLabel>
-            <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+            <Grid templateColumns="repeat(3, 1fr)" gap={2}>
               {imageArray.map((image, index) => (
-                <GridItem>
+                <GridItem
+                  cursor="pointer"
+                  p={1}
+                  _hover={{
+                    bgColor: "blue.50",
+                  }}
+                >
                   <Image
                     src={`/${image}`}
                     width={300}
@@ -102,7 +108,7 @@ const TopPage = () => {
               onChangeEnd={(val) => setFontSize(val)}
               defaultValue={40}
               min={5}
-              max={150}
+              max={200}
             >
               <SliderTrack>
                 <SliderFilledTrack />
