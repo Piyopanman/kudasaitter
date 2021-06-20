@@ -4,6 +4,7 @@ import "firebase/storage";
 import { useEffect } from "react";
 import { firebaseConfig } from "../firebase";
 import { ChakraProvider } from "@chakra-ui/react";
+import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }: AppProps) {
   //firebase設定初期化
@@ -14,9 +15,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <RecoilRoot>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </RecoilRoot>
   );
 }
 

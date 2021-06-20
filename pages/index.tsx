@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
 import { saveOgp } from "../repository/saveOgp";
+import textState from "../recoil/atoms/textState";
 import {
   Box,
   Center,
@@ -21,6 +22,7 @@ import {
   GridItem,
   Text as T,
 } from "@chakra-ui/react";
+import { useRecoilState } from "recoil";
 
 const layer = new Konva.Layer();
 
@@ -33,7 +35,7 @@ const TopPage = () => {
   const router = useRouter();
   const imageArray = ["hukidashi.png", "kouhaku.png", "shuchusen.png"];
 
-  let [text, setText] = useState<string>("5000兆円欲しい！！！");
+  const [text, setText] = useRecoilState(textState);
   const [fontSize, setFontSize] = useState<number>(40);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
@@ -56,11 +58,6 @@ const TopPage = () => {
     }
   };
 
-  let changeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    let inputValue = e.target.value;
-    setText(inputValue);
-  };
-
   return (
     <Layout>
       <Box m={5}>
@@ -73,7 +70,7 @@ const TopPage = () => {
               placeholder="(例)5000兆円欲しい！！！"
               width="70%"
               value={text}
-              onChange={(e) => changeText(e)}
+              onChange={(e) => setText(e.target.value)}
             />
           </Box>
           <Box>
