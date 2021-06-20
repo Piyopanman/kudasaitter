@@ -35,6 +35,10 @@ const TopPage = () => {
     initialImageState.src = "shuchusen.png";
     initialStageWidth = (window.innerWidth * 0.7) as number;
     initialStageHeight = (initialStageWidth * 0.525) as number;
+    if (initialStageWidth > 1000) {
+      initialStageWidth = 600;
+      initialStageHeight = 315;
+    }
   }
   const router = useRouter();
   const imageArray = [
@@ -45,20 +49,21 @@ const TopPage = () => {
     "muji.png",
   ];
   const keywordArray = [
+    "募集中",
+    "たくさん欲しい",
+    "不足しています",
+    "急募",
+    "あなたの知識が必要です",
     "求ム！有識者！",
     "救われる命があります",
     "助けてください",
-    "不足しています",
-    "たくさん欲しい",
     "人類には必要です",
     "助けて",
-    "募集中",
-    "あなたの知識が必要です",
     "今こそ解き放つ時",
-    "急募",
     "隠し持っていませんか？",
     "私の必須栄養素",
     "持っているのは知っています",
+    "実は持ってるでしょ？",
   ];
 
   const [text, setText] = useRecoilState(textState);
@@ -68,6 +73,11 @@ const TopPage = () => {
     width: initialStageWidth,
     height: initialStageHeight,
   });
+  // const [stageSize, setStageSize] = useState({
+  //   width: 600,
+  //   height: 315,
+  // });
+
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
@@ -77,6 +87,7 @@ const TopPage = () => {
       const width = window.innerWidth * 0.7;
       const height = width * 0.525;
       setStageSize({ width: width, height: height });
+      layer.draw();
     };
     window.addEventListener("resize", checkSize);
     return function cleanup() {
@@ -86,8 +97,11 @@ const TopPage = () => {
 
   const submit = async () => {
     const uuid = generateUUID();
+    const pixelRatio = stageSize.width! < 400 ? 3 : 2;
     //@ts-ignore
-    const dataURL = await stageRef.current.toDataURL({ pixelRatio: 2 });
+    const dataURL = await stageRef.current.toDataURL({
+      pixelRatio: pixelRatio,
+    });
     await saveOgp(dataURL, uuid);
     router.push(`/${uuid}`);
   };
@@ -150,7 +164,10 @@ const TopPage = () => {
             <T textAlign="center" fontSize="xl" mt={10}>
               背景画像を選んでください
             </T>
-            <Grid templateColumns="repeat(3, 1fr)" gap={2}>
+            <Grid
+              templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+              gap={2}
+            >
               {imageArray.map((image, index) => (
                 <GridItem
                   cursor="pointer"
@@ -179,8 +196,8 @@ const TopPage = () => {
             </T>
             <Center>
               <ColorPicker
-                width={stageSize.width!}
-                height={stageSize.height!}
+                width={456}
+                height={228}
                 color={color}
                 onChange={setColor}
               />
@@ -210,9 +227,17 @@ const TopPage = () => {
         </Box>
 
         <Center mt={10} p={3}>
-          <Stage width={600} height={315} ref={stageRef}>
+          <Stage
+            width={stageSize.width}
+            height={stageSize.height}
+            ref={stageRef}
+          >
             <Layer>
-              <Img image={image} />
+              <Img
+                image={image}
+                width={stageSize.width}
+                height={stageSize.height}
+              />
               <Text
                 text={text}
                 fontSize={fontSize}
@@ -220,12 +245,12 @@ const TopPage = () => {
                 fontStyle="bold"
                 align="center"
                 verticalAlign="middle"
-                x={50}
-                y={15}
-                strokeWidth={100}
+                x={stageSize.width! / 12}
+                y={stageSize.height! / 21}
+                strokeWidth={10}
                 wrap="char"
-                height={300}
-                width={500}
+                height={stageSize.height! * 0.9}
+                width={stageSize.width! * 0.85}
               />
             </Layer>
           </Stage>

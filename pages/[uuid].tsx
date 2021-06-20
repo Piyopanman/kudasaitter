@@ -31,7 +31,6 @@ const Result: NextPage<Props> = (props) => {
     <Layout image={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}>
       <Box m={5} textAlign="center">
         <Text fontSize="3xl">画像を生成しました🎉</Text>
-        <Text>{text}</Text>
         <Box>
           <Image
             src={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}
