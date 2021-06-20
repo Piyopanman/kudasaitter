@@ -4,6 +4,8 @@ import { Stage, Layer, Image as Img, Text } from "react-konva";
 import Konva from "konva";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/lib/css/styles.css";
 
 import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
@@ -36,6 +38,7 @@ const TopPage = () => {
   const imageArray = ["hukidashi.png", "kouhaku.png", "shuchusen.png"];
 
   const [text, setText] = useRecoilState(textState);
+  const [color, setColor] = useColor("hex", "#121212");
   const [fontSize, setFontSize] = useState<number>(40);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
@@ -100,6 +103,20 @@ const TopPage = () => {
 
           <Box>
             <T textAlign="center" fontSize="xl" mt={10}>
+              文字色を選んでください
+            </T>
+            <Box my={0} mx="auto">
+              <ColorPicker
+                width={456}
+                height={228}
+                color={color}
+                onChange={setColor}
+              />
+            </Box>
+          </Box>
+
+          <Box>
+            <T textAlign="center" fontSize="xl" mt={10}>
               文字のサイズを選んでください
             </T>
             <Slider
@@ -126,6 +143,7 @@ const TopPage = () => {
               <Text
                 text={text}
                 fontSize={fontSize}
+                fill={color.hex}
                 fontStyle="bold"
                 align="center"
                 verticalAlign="middle"
