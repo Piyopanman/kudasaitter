@@ -46,6 +46,8 @@ const TopPage = () => {
     "kouhaku.png",
     "kouhaku02.jpeg",
     "shuchusen.png",
+    "uni.png",
+    "kiken.png",
     "muji.png",
   ];
   const keywordArray = [
