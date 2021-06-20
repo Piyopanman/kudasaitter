@@ -35,7 +35,13 @@ const TopPage = () => {
     initialImageState.src = "shuchusen.png";
   }
   const router = useRouter();
-  const imageArray = ["hukidashi.png", "kouhaku.png", "shuchusen.png"];
+  const imageArray = [
+    "hukidashi.png",
+    "kouhaku.png",
+    "kouhaku02.jpeg",
+    "shuchusen.png",
+    "muji.png",
+  ];
 
   const [text, setText] = useRecoilState(textState);
   const [color, setColor] = useColor("hex", "#121212");
@@ -85,6 +91,8 @@ const TopPage = () => {
                 <GridItem
                   cursor="pointer"
                   p={1}
+                  border="4px"
+                  borderColor="blue.200"
                   _hover={{
                     bgColor: "blue.50",
                   }}
@@ -105,14 +113,14 @@ const TopPage = () => {
             <T textAlign="center" fontSize="xl" mt={10}>
               文字色を選んでください
             </T>
-            <Box my={0} mx="auto">
+            <Center>
               <ColorPicker
                 width={456}
                 height={228}
                 color={color}
                 onChange={setColor}
               />
-            </Box>
+            </Center>
           </Box>
 
           <Box>
