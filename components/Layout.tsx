@@ -30,9 +30,8 @@ const Layout = ({
       <meta property="og:url" content="https://kudasaitter.vercel.app/" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      {/* これ絶対パスに修正↓ */}
       <meta property="og:image" content={image} />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
     </Head>
     <Header />
     {children}
