@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import { Stage, Layer, Image as Img, Text } from "react-konva";
 import Konva from "konva";
@@ -62,9 +62,24 @@ const TopPage = () => {
   const [text, setText] = useRecoilState(textState);
   const [color, setColor] = useColor("hex", "#121212");
   const [fontSize, setFontSize] = useState<number>(30);
+  const [stageWidth, setStageWidth] = useState<number>(600);
+  const [stageHeight, setStageHeight] = useState<number>(315);
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
+
+  useEffect(() => {
+    const checkSize = () => {
+      const width = window.innerWidth * 0.7;
+      const height = width * 0.525;
+      setStageWidth(width);
+      setStageHeight(height);
+    };
+    window.addEventListener("resize", checkSize);
+    return function cleanup() {
+      window.removeEventListener("resize", checkSize);
+    };
+  });
 
   const submit = async () => {
     const uuid = generateUUID();
@@ -161,8 +176,8 @@ const TopPage = () => {
             </T>
             <Center>
               <ColorPicker
-                width={456}
-                height={228}
+                width={stageWidth}
+                height={stageHeight}
                 color={color}
                 onChange={setColor}
               />
