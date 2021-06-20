@@ -29,10 +29,12 @@ import { useRecoilState } from "recoil";
 const layer = new Konva.Layer();
 
 const TopPage = () => {
-  let initialImageState;
+  let initialImageState, initialStageWidth, initialStageHeight;
   if (process.browser) {
     initialImageState = new window.Image();
     initialImageState.src = "shuchusen.png";
+    initialStageWidth = (window.innerWidth * 0.7) as number;
+    initialStageHeight = (initialStageWidth * 0.525) as number;
   }
   const router = useRouter();
   const imageArray = [
@@ -62,8 +64,10 @@ const TopPage = () => {
   const [text, setText] = useRecoilState(textState);
   const [color, setColor] = useColor("hex", "#121212");
   const [fontSize, setFontSize] = useState<number>(30);
-  const [stageWidth, setStageWidth] = useState<number>(600);
-  const [stageHeight, setStageHeight] = useState<number>(315);
+  const [stageSize, setStageSize] = useState({
+    width: initialStageWidth,
+    height: initialStageHeight,
+  });
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
@@ -72,8 +76,7 @@ const TopPage = () => {
     const checkSize = () => {
       const width = window.innerWidth * 0.7;
       const height = width * 0.525;
-      setStageWidth(width);
-      setStageHeight(height);
+      setStageSize({ width: width, height: height });
     };
     window.addEventListener("resize", checkSize);
     return function cleanup() {
@@ -176,8 +179,8 @@ const TopPage = () => {
             </T>
             <Center>
               <ColorPicker
-                width={stageWidth}
-                height={stageHeight}
+                width={stageSize.width!}
+                height={stageSize.height!}
                 color={color}
                 onChange={setColor}
               />
