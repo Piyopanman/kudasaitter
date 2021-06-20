@@ -4,8 +4,8 @@ import { Stage, Layer, Image as Img, Text } from "react-konva";
 import Konva from "konva";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ColorPicker, useColor } from "react-color-palette";
 import "react-color-palette/lib/css/styles.css";
+import { HexColorPicker } from "react-colorful";
 
 import Layout from "../components/Layout";
 import { generateUUID } from "../utils/generateUUID";
@@ -63,14 +63,16 @@ const TopPage = () => {
     "今こそ解き放つ時",
     "隠し持っていませんか？",
     "私の必須栄養素",
+    "回答求む",
     "持っているのは知っています",
     "お恵みを...",
     "みんなも欲しいはず",
+    "みんなも知りたいはず",
     "黙って寄越せ",
   ];
 
   const [text, setText] = useRecoilState(textState);
-  const [color, setColor] = useColor("hex", "#121212");
+  const [color, setColor] = useState("#121212");
   const [fontSize, setFontSize] = useState<number>(30);
   const [stageSize, setStageSize] = useState({
     width: initialStageWidth,
@@ -193,12 +195,7 @@ const TopPage = () => {
               文字色を選んでください
             </T>
             <Center>
-              <ColorPicker
-                width={456}
-                height={228}
-                color={color}
-                onChange={setColor}
-              />
+              <HexColorPicker color={color} onChange={setColor} />
             </Center>
           </Box>
 
@@ -239,7 +236,7 @@ const TopPage = () => {
               <Text
                 text={text}
                 fontSize={fontSize}
-                fill={color.hex}
+                fill={color}
                 fontStyle="bold"
                 align="center"
                 verticalAlign="middle"
