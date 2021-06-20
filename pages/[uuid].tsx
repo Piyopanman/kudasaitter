@@ -7,6 +7,8 @@ import { TwitterShareButton } from "react-share";
 import Layout from "../components/Layout";
 import { firebaseConfig } from "../firebase";
 import { Box, Text, Button } from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
+import textState from "../recoil/atoms/textState";
 
 type Props = {
   uuid: string;
@@ -14,6 +16,7 @@ type Props = {
 
 const Result: NextPage<Props> = (props) => {
   const { uuid } = props;
+  const text = useRecoilValue(textState);
 
   useEffect(() => {
     const getUrl = async () => {
@@ -28,6 +31,7 @@ const Result: NextPage<Props> = (props) => {
     <Layout image={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}>
       <Box m={5} textAlign="center">
         <Text fontSize="3xl">画像を生成しました🎉</Text>
+        <Text>{text}</Text>
         <Box>
           <Image
             src={`${process.env.NEXT_PUBLIC_OGP_BASE_URL}/${uuid}`}
@@ -37,7 +41,7 @@ const Result: NextPage<Props> = (props) => {
         </Box>
         <Button color="white" bgColor="#05ACED" mr={2}>
           <TwitterShareButton
-            title="くださいったー"
+            title={text}
             hashtags={["くださいったー"]}
             related={["hiyoko_coder"]}
             url={`https://kudasaitter.vercel.app/${uuid}`}
