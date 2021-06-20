@@ -53,6 +53,7 @@ const TopPage = () => {
     "たくさん欲しい",
     "不足しています",
     "急募",
+    "実は持ってるでしょ？",
     "あなたの知識が必要です",
     "求ム！有識者！",
     "救われる命があります",
@@ -63,7 +64,9 @@ const TopPage = () => {
     "隠し持っていませんか？",
     "私の必須栄養素",
     "持っているのは知っています",
-    "実は持ってるでしょ？",
+    "お恵みを...",
+    "みんなも欲しいはず",
+    "黙って寄越せ",
   ];
 
   const [text, setText] = useRecoilState(textState);
@@ -73,11 +76,6 @@ const TopPage = () => {
     width: initialStageWidth,
     height: initialStageHeight,
   });
-  // const [stageSize, setStageSize] = useState({
-  //   width: 600,
-  //   height: 315,
-  // });
-
   const [image, setImage] =
     useState<HTMLImageElement | undefined>(initialImageState);
   const stageRef = useRef(null);
@@ -147,7 +145,7 @@ const TopPage = () => {
               キーワードを選んでください（任意）
             </T>
             <Grid
-              templateColumns="repeat(auto-fit, minmax(180px, 1fr))"
+              templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
               gap={1}
             >
               {keywordArray.map((keyword, index) => (
