@@ -43,8 +43,8 @@ const TopPage = () => {
   const router = useRouter();
   const imageArray = [
     "hukidashi.png",
-    "kouhaku.png",
-    "kouhaku02.jpeg",
+    "kouhaku01.png",
+    "kouhaku02.png",
     "shuchusen.png",
     "uni.png",
     "kiken.png",
