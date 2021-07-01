@@ -11,7 +11,7 @@ import {
 
 const Info: NextPage = () => {
   return (
-    <Box w="70%" my={0} mx="auto">
+    <Box w="85%" my={0} mx="auto">
       <Accordion allowMultiple>
         <AccordionItem>
           <AccordionButton

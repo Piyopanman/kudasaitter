@@ -1,31 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import React from "react";
-import { Stage, Layer, Image as Img, Text } from "react-konva";
 import Konva from "konva";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import "react-color-palette/lib/css/styles.css";
-import { HexColorPicker } from "react-colorful";
-
+import textState from "../recoil/atoms/textState";
+import { Box } from "@chakra-ui/react";
+import { useRecoilState } from "recoil";
 import Layout from "../components/Layout";
+import Info from "../components/pages/Info";
+import Keyword from "../components/pages/Keyword";
 import { generateUUID } from "../utils/generateUUID";
 import { saveOgp } from "../repository/saveOgp";
-import textState from "../recoil/atoms/textState";
-import {
-  Box,
-  Center,
-  Textarea,
-  Button,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  Grid,
-  GridItem,
-  Text as T,
-} from "@chakra-ui/react";
-import { useRecoilState } from "recoil";
-import Info from "../components/pages/Info";
+import FontColor from "../components/pages/FontColor";
+import TextArea from "../components/pages/TextArea";
+import BgImage from "../components/pages/BgImage";
+import FontSize from "../components/pages/FontSize";
+import Canvas from "../components/pages/Canvas";
+import GenerateButton from "../components/pages/GenerateButton";
 
 const layer = new Konva.Layer();
 
@@ -42,37 +33,6 @@ const TopPage = () => {
     }
   }
   const router = useRouter();
-  const imageArray = [
-    "hukidashi.png",
-    "kouhaku01.png",
-    "kouhaku02.png",
-    "shuchusen.png",
-    "uni.png",
-    "kiken.png",
-    "muji.png",
-  ];
-  const keywordArray = [
-    "募集中",
-    "たくさん欲しい",
-    "不足しています",
-    "急募",
-    "実は持ってるでしょ？",
-    "あなたの知識が必要です",
-    "求ム！有識者！",
-    "救われる命があります",
-    "助けてください",
-    "人類には必要です",
-    "助けて",
-    "今こそ解き放つ時",
-    "隠し持っていませんか？",
-    "私の必須栄養素",
-    "回答求む",
-    "持っているのは知っています",
-    "お恵みを...",
-    "みんなも欲しいはず",
-    "みんなも知りたいはず",
-    "黙って寄越せ",
-  ];
 
   const [text, setText] = useRecoilState(textState);
   const [color, setColor] = useState("#121212");
@@ -135,132 +95,21 @@ const TopPage = () => {
       <Box m={5}>
         <Box textAlign="center">
           <Info />
-          <Box>
-            <T textAlign="center" fontSize="xl" mt={10}>
-              文字を入力してください(改行、絵文字使用可)
-            </T>
-            <Textarea
-              placeholder="(例)5000兆円欲しい！！！"
-              width="70%"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-          </Box>
-
-          <Box w="70%" my={0} mx="auto">
-            <T textAlign="center" fontSize="xl" mt={10}>
-              キーワードを選んでください（任意）
-            </T>
-            <Grid
-              templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
-              gap={1}
-            >
-              {keywordArray.map((keyword, index) => (
-                <GridItem cursor="pointer" p={1}>
-                  <Button onClick={() => changeKeyword(keyword)} key={index}>
-                    {keyword}
-                  </Button>
-                </GridItem>
-              ))}
-            </Grid>
-          </Box>
-
-          <Box w="70%" my={0} mx="auto">
-            <T textAlign="center" fontSize="xl" mt={10}>
-              背景画像を選んでください
-            </T>
-            <Grid
-              templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
-              gap={2}
-            >
-              {imageArray.map((image, index) => (
-                <GridItem
-                  cursor="pointer"
-                  p={1}
-                  border="4px"
-                  borderColor="blue.200"
-                  _hover={{
-                    bgColor: "blue.100",
-                  }}
-                >
-                  <Image
-                    src={`/${image}`}
-                    width={300}
-                    height={155}
-                    onClick={() => changeImage(image)}
-                    key={index}
-                  />
-                </GridItem>
-              ))}
-            </Grid>
-          </Box>
-
-          <Box>
-            <T textAlign="center" fontSize="xl" mt={10}>
-              文字色を選んでください
-            </T>
-            <Center>
-              <HexColorPicker color={color} onChange={setColor} />
-            </Center>
-          </Box>
-
-          <Box>
-            <T textAlign="center" fontSize="xl" mt={10}>
-              文字のサイズを選んでください
-            </T>
-            <Slider
-              aria-label="slider-1"
-              width="70%"
-              size="md"
-              onChangeEnd={(val) => setFontSize(val)}
-              defaultValue={30}
-              min={5}
-              max={200}
-              focusThumbOnChange={false}
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-          </Box>
+          <TextArea text={text} setText={setText} />
+          <Keyword changeKeyword={changeKeyword} />
+          <BgImage changeImage={changeImage} />
+          <FontColor color={color} setColor={setColor} />
+          <FontSize setFontSize={setFontSize} />
         </Box>
-
-        <Center mt={10} p={3}>
-          <Stage
-            width={stageSize.width}
-            height={stageSize.height}
-            ref={stageRef}
-          >
-            <Layer>
-              <Img
-                image={image}
-                width={stageSize.width}
-                height={stageSize.height}
-              />
-              <Text
-                text={text}
-                fontSize={fontSize}
-                fill={color}
-                fontStyle="bold"
-                align="center"
-                verticalAlign="middle"
-                x={stageSize.width! / 12}
-                y={stageSize.height! / 21}
-                strokeWidth={10}
-                wrap="char"
-                height={stageSize.height! * 0.9}
-                width={stageSize.width! * 0.85}
-              />
-            </Layer>
-          </Stage>
-        </Center>
-
-        <Center>
-          <Button my={10} onClick={submit} size="lg">
-            生成する！！
-          </Button>
-        </Center>
+        <Canvas
+          stageSize={stageSize}
+          stageRef={stageRef}
+          image={image}
+          text={text}
+          fontSize={fontSize}
+          color={color}
+        />
+        <GenerateButton submit={submit} />
       </Box>
     </Layout>
   );
