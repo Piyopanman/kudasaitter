@@ -1,0 +1,49 @@
+import { NextPage } from "next";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Text,
+  Box,
+} from "@chakra-ui/react";
+
+const Info: NextPage = () => {
+  return (
+    <Box w="70%" my={0} mx="auto">
+      <Accordion allowMultiple>
+        <AccordionItem>
+          <AccordionButton
+            textAlign="center"
+            bgColor="blue.100"
+            _hover={{ bgColor: "blue.50" }}
+          >
+            <Box my={0} mx="auto">
+              遊び方
+              <AccordionIcon />
+            </Box>
+          </AccordionButton>
+          <AccordionPanel>
+            <Text textAlign="left">
+              「ネコチャンの写真ください！」「【急募】トイレットペーパー」など欲しいものを記入&ツイートしてフォロワーに知らせましょう！
+              <br />
+              <br />
+              また、「くださいったー」という名前ですが「OOください！」のような使い方をしないで全く構いません！
+              <br />
+              「今日も推しが尊い！！！！」「ねむい！！！」「全オタクCeles推し活をしよう！！」などなど自由に使っていただけると嬉しいです！
+              <br />
+              <br />
+              「『可愛い推しのイラストください！！』という主張をどうにかTLで目立たせたい」という気持ちから開発したアプリなので、「くださいったー」という名前はその名残、くらいの認識でお願いできればと思います🙇‍♂️
+              <br />
+              <br />
+              たくさん使ってくださいね〜！
+            </Text>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    </Box>
+  );
+};
+
+export default Info;

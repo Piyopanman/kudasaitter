@@ -25,6 +25,7 @@ import {
   Text as T,
 } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
+import Info from "../components/pages/Info";
 
 const layer = new Konva.Layer();
 
@@ -80,8 +81,9 @@ const TopPage = () => {
     width: initialStageWidth,
     height: initialStageHeight,
   });
-  const [image, setImage] =
-    useState<HTMLImageElement | undefined>(initialImageState);
+  const [image, setImage] = useState<HTMLImageElement | undefined>(
+    initialImageState
+  );
   const stageRef = useRef(null);
 
   useEffect(() => {
@@ -132,6 +134,7 @@ const TopPage = () => {
     <Layout>
       <Box m={5}>
         <Box textAlign="center">
+          <Info />
           <Box>
             <T textAlign="center" fontSize="xl" mt={10}>
               文字を入力してください(改行、絵文字使用可)
