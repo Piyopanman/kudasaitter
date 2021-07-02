@@ -8,6 +8,8 @@ type Props = {
 };
 
 const BgImage: NextPage<Props> = ({ changeImage }) => {
+  console.log("bgimage");
+
   return (
     <Box w="70%" my={0} mx="auto">
       <Text textAlign="center" fontSize="xl" mt={10}>
