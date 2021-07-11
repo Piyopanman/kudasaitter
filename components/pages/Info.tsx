@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import React from "react";
 import {
   Accordion,
   AccordionItem,
@@ -9,9 +10,9 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-const Info: NextPage = () => {
+const Info: NextPage = React.memo(() => {
   return (
-    <Box w="70%" my={0} mx="auto">
+    <Box w="85%" my={0} mx="auto">
       <Accordion allowMultiple>
         <AccordionItem>
           <AccordionButton
@@ -44,6 +45,6 @@ const Info: NextPage = () => {
       </Accordion>
     </Box>
   );
-};
+});
 
 export default Info;

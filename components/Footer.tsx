@@ -1,7 +1,8 @@
 import { NextPage } from "next";
+import React from "react";
 import { Box, Heading, Text, Link } from "@chakra-ui/react";
 
-const Footer: NextPage = () => {
+const Footer: NextPage = React.memo(() => {
   return (
     <Box
       textAlign="center"
@@ -20,6 +21,6 @@ const Footer: NextPage = () => {
       </Text>
     </Box>
   );
-};
+});
 
 export default Footer;

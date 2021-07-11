@@ -40,7 +40,7 @@ const Result: NextPage<Props> = (props) => {
         </Box>
         <Button color="white" bgColor="#05ACED" mr={2}>
           <TwitterShareButton
-            title={text}
+            title={`${text}\n`}
             hashtags={["くださいったー"]}
             related={["hiyoko_coder"]}
             url={`https://kudasaitter.vercel.app/${uuid}`}
