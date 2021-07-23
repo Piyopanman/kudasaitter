@@ -6,4 +6,5 @@ export const imageArray = [
   "uni.png",
   "kiken.png",
   "muji.png",
+  "shuchusen-hukidashi.png",
 ];
