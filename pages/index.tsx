@@ -37,6 +37,7 @@ const TopPage = () => {
   const [text, setText] = useRecoilState(textState);
   const [color, setColor] = useState("#121212");
   const [fontSize, setFontSize] = useState<number>(30);
+  const [isLoading, setLoading] = useState(false);
   const [stageSize, setStageSize] = useState({
     width: initialStageWidth,
     height: initialStageHeight,
@@ -60,6 +61,7 @@ const TopPage = () => {
   });
 
   const submit = async () => {
+    setLoading(true);
     const uuid = generateUUID();
     const pixelRatio = stageSize.width! < 400 ? 3 : 2;
     //@ts-ignore
@@ -109,7 +111,7 @@ const TopPage = () => {
           fontSize={fontSize}
           color={color}
         />
-        <GenerateButton submit={submit} />
+        <GenerateButton submit={submit} isLoading={isLoading} />
       </Box>
     </Layout>
   );
