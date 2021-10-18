@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/storage";
 import { useEffect } from "react";
 import { firebaseConfig } from "../firebase";

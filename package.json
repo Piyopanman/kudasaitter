@@ -9,30 +9,30 @@
     "now-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && npm run build"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.3",
-    "@emotion/react": "^11.4.0",
+    "@chakra-ui/react": "^1.6.10",
+    "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "canvas": "^2.6.1",
-    "firebase": "^8.6.7",
+    "canvas": "^2.8.0",
+    "firebase": "^8.8.0",
     "framer-motion": "^4.1.17",
     "konva": "^8.0.4",
-    "next": "latest",
-    "next-transpile-modules": "^7.3.0",
-    "react": "^17.0.1",
-    "react-color-palette": "^5.0.0",
-    "react-colorful": "^5.2.2",
-    "react-dom": "^17.0.1",
-    "react-konva": "^17.0.2-4",
+    "next": "^11.1.2",
+    "next-transpile-modules": "^8.0.0",
+    "react": "^17.0.2",
+    "react-color-palette": "^6.1.0",
+    "react-colorful": "^5.5.0",
+    "react-dom": "^17.0.2",
+    "react-konva": "^17.0.2-5",
     "react-share": "^4.4.0",
-    "recoil": "^0.3.1",
+    "recoil": "^0.4.1",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@types/node": "^12.12.21",
-    "@types/react": "^17.0.2",
-    "@types/react-color": "^3.0.4",
-    "@types/react-dom": "^17.0.1",
-    "typescript": "4.0"
+    "@types/node": "^16.11.1",
+    "@types/react": "^17.0.30",
+    "@types/react-color": "^3.0.5",
+    "@types/react-dom": "^17.0.9",
+    "typescript": "4.4"
   },
   "license": "MIT"
 }
