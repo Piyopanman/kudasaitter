@@ -8,7 +8,6 @@ type Props = {
 };
 
 const FontColor: NextPage<Props> = ({ color, setColor }) => {
-  console.log("fontcolor");
   return (
     <Box>
       <Text textAlign="center" fontSize="xl" mt={10}>

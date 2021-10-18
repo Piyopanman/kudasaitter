@@ -7,7 +7,6 @@ type Props = {
 };
 
 const Keyword: NextPage<Props> = ({ changeKeyword }) => {
-  console.log("keyword");
   return (
     <Box w="70%" my={0} mx="auto">
       <Text textAlign="center" fontSize="xl" mt={10}>
