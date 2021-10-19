@@ -19,10 +19,10 @@ const BgImage: NextPage<Props> = ({ changeImage }) => {
             cursor="pointer"
             p={1}
             border="4px"
-            borderColor="blue.200"
+            borderColor="purple.400"
             position="relative"
             _hover={{
-              bgColor: "blue.100",
+              bgColor: "purple.600",
             }}
           >
             {image === "halloween.jpg" ? (
