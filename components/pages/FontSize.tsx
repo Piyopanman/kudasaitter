@@ -22,6 +22,7 @@ const FontSize: NextPage<Props> = ({ setFontSize }) => {
         aria-label="slider-1"
         width="70%"
         size="md"
+        colorScheme="purple"
         onChangeEnd={(val) => setFontSize(val)}
         defaultValue={30}
         min={5}

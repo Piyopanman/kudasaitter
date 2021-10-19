@@ -1,4 +1,5 @@
 export const imageArray = [
+  "halloween.jpg",
   "hukidashi.png",
   "kouhaku01.png",
   "kouhaku02.png",
@@ -7,5 +8,4 @@ export const imageArray = [
   "kiken.png",
   "muji.png",
   "tokyo2020.png",
-  "halloween.jpg",
 ];
