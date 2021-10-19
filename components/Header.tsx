@@ -7,7 +7,7 @@ const Header: NextPage = React.memo(() => {
   return (
     <Center backgroundColor="purple.600" p={8}>
       <Heading s="h2" size="2xl" color="orange.200">
-        <Link href="/"> 🎃くださいったー👻 </Link>
+        <Link href="/"> くださいったー🎃</Link>
       </Heading>
     </Center>
   );
