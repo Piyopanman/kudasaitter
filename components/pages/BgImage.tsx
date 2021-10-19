@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import { Box, Text, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Text, Grid, GridItem, Tag } from "@chakra-ui/react";
 import { imageArray } from "../../constant/imageArray";
 
 type Props = {
@@ -19,11 +19,24 @@ const BgImage: NextPage<Props> = ({ changeImage }) => {
             cursor="pointer"
             p={1}
             border="4px"
-            borderColor="blue.200"
+            borderColor="purple.400"
+            position="relative"
             _hover={{
-              bgColor: "blue.100",
+              bgColor: "purple.600",
             }}
           >
+            {image === "halloween.jpg" ? (
+              <Tag position="absolute" top="2" zIndex="1" colorScheme="orange">
+                期間限定👻
+              </Tag>
+            ) : image === "tokyo2020.png" ? (
+              <Tag position="absolute" top="2" zIndex="1" colorScheme="blue">
+                TOKYO2020
+              </Tag>
+            ) : (
+              <></>
+            )}
+
             <Image
               src={`/${image}`}
               width={300}

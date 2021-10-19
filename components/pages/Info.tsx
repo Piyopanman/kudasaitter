@@ -17,10 +17,10 @@ const Info: NextPage = React.memo(() => {
         <AccordionItem>
           <AccordionButton
             textAlign="center"
-            bgColor="blue.100"
-            _hover={{ bgColor: "blue.50" }}
+            bgColor="purple.600"
+            _hover={{ bgColor: "purple.50" }}
           >
-            <Box my={0} mx="auto">
+            <Box my={0} mx="auto" color="orange.200">
               遊び方
               <AccordionIcon />
             </Box>

@@ -13,11 +13,17 @@ type Props = {
 
 const Layout = ({
   children,
-  title = "くださいったー",
+  title = "くださいったー🎃",
   description = "欲しいものを画像で生成してフォロワーにシェアしよう！",
   image = "https://kudasaitter.vercel.app/default.png",
 }: Props) => (
-  <Box h="100%" minH="100vh" position="relative" paddingBottom="6em">
+  <Box
+    h="100%"
+    minH="100vh"
+    position="relative"
+    paddingBottom="6em"
+    bgColor="orange.200"
+  >
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
