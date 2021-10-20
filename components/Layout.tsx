@@ -22,7 +22,7 @@ const Layout = ({
     minH="100vh"
     position="relative"
     paddingBottom="6em"
-    bgColor="orange.200"
+    bgColor="white"
   >
     <Head>
       <title>{title}</title>

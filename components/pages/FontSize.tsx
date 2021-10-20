@@ -22,7 +22,6 @@ const FontSize: NextPage<Props> = ({ setFontSize }) => {
         aria-label="slider-1"
         width="70%"
         size="md"
-        colorScheme="purple"
         onChangeEnd={(val) => setFontSize(val)}
         defaultValue={30}
         min={5}
@@ -30,9 +29,11 @@ const FontSize: NextPage<Props> = ({ setFontSize }) => {
         focusThumbOnChange={false}
       >
         <SliderTrack>
-          <SliderFilledTrack />
+          <SliderFilledTrack bg="blue.200" />
         </SliderTrack>
-        <SliderThumb />
+        <SliderThumb boxSize="7" bg="gray.50">
+          🎃
+        </SliderThumb>
       </Slider>
     </Box>
   );

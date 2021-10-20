@@ -8,16 +8,16 @@ const Footer: NextPage = React.memo(() => {
       textAlign="center"
       mt={10}
       py={5}
-      bgColor="purple.600"
+      bgColor="blue.100"
       pos="absolute"
       bottom={0}
       h="6em"
       w="100%"
     >
-      <Heading size="lg" color="orange.200">
+      <Heading size="lg" color="black">
         くださいったー
       </Heading>
-      <Text color="orange.200">
+      <Text color="black">
         作成者:{" "}
         <Link href="https://twitter.com/hiyoko_coder">@hiyoko_coder</Link>
       </Text>
