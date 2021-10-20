@@ -1,8 +1,9 @@
 import { atom } from "recoil";
+import { textSample } from "../../constant/textSample";
 
 const textState = atom({
   key: "textState",
-  default: `【たくさん欲しい】\n🍫お菓子ください！！！🍬`,
+  default: textSample.hallween,
 });
 
 export default textState;
