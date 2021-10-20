@@ -19,10 +19,10 @@ const BgImage: NextPage<Props> = ({ changeImage }) => {
             cursor="pointer"
             p={1}
             border="4px"
-            borderColor="purple.400"
+            borderColor="blue.200"
             position="relative"
             _hover={{
-              bgColor: "purple.600",
+              bgColor: "blue.100",
             }}
           >
             {image === "halloween.jpg" ? (
@@ -30,7 +30,7 @@ const BgImage: NextPage<Props> = ({ changeImage }) => {
                 期間限定👻
               </Tag>
             ) : image === "tokyo2020.png" ? (
-              <Tag position="absolute" top="2" zIndex="1" colorScheme="blue">
+              <Tag position="absolute" top="2" zIndex="1" colorScheme="cyan">
                 TOKYO2020
               </Tag>
             ) : (
