@@ -13,7 +13,7 @@ type Props = {
 
 const Layout = ({
   children,
-  title = "くださいったー🎃",
+  title = "くださいったー",
   description = "欲しいものを画像で生成してフォロワーにシェアしよう！",
   image = "https://kudasaitter.vercel.app/default.png",
 }: Props) => (
