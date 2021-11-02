@@ -1,7 +1,5 @@
 export const imageArray = [
-  "halloween.jpg",
   "hukidashi.png",
-  "kouhaku01.png",
   "kouhaku02.png",
   "shuchusen.png",
   "uni.png",

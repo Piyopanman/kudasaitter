@@ -21,7 +21,7 @@ const TopPageWithNoSSR = () => {
   let initialImageState, initialStageWidth, initialStageHeight;
   if (process.browser) {
     initialImageState = new window.Image();
-    initialImageState.src = "halloween.jpg";
+    initialImageState.src = "shuchusen.png";
     initialStageWidth = (window.innerWidth * 0.7) as number;
     initialStageHeight = (initialStageWidth * 0.525) as number;
     if (initialStageWidth > 1000) {
