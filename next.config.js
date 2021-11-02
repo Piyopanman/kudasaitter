@@ -3,5 +3,8 @@ module.exports = (phase, { defaultConfig }) => {
     images: {
       domains: ["firebasestorage.googleapis.com", "storage.googleapis.com"],
     },
+    experimental: {
+      esmExternals: false,
+    },
   };
 };

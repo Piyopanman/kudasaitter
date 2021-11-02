@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { firebaseConfig } from "../firebase";
 import { ChakraProvider } from "@chakra-ui/react";
 import { RecoilRoot } from "recoil";
-import { halloweenTheme } from "../theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   //firebase設定初期化
@@ -17,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <ChakraProvider theme={halloweenTheme}>
+      <ChakraProvider>
         <Component {...pageProps} />
       </ChakraProvider>
     </RecoilRoot>

@@ -31,9 +31,7 @@ const FontSize: NextPage<Props> = ({ setFontSize }) => {
         <SliderTrack>
           <SliderFilledTrack bg="blue.200" />
         </SliderTrack>
-        <SliderThumb boxSize="7" bg="gray.50">
-          🎃
-        </SliderThumb>
+        <SliderThumb boxSize="7" bg="gray.50"></SliderThumb>
       </Slider>
     </Box>
   );
