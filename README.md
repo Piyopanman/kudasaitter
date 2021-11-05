@@ -2,7 +2,8 @@
 
 OGP 画像をお手軽に生成できる Web アプリです 🎉  
 文字サイズ・色、背景画像などを自由に直感的に選べます 😘
-![logo](https://kudasaitter.vercel.app/default.png)
+![logo](https://kudasaitter.vercel.app/default.png)  
+[くださいったー](https://kudasaitter.vercel.app/)
 
 ## 🐣 使用技術 🐣
 
